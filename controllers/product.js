@@ -78,3 +78,86 @@ module.exports.getProduct = (req, res) => {
     .then(course => res.send(course))
     .catch(err => errorHandler(err, req, res));
 };
+
+
+module.exports.updateProduct = (req, res) => {
+    console.log(req.params.id);
+    let productUpdate = {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price
+    }
+
+    return Product.findByIdAndUpdate(req.params.id, productUpdate, {
+    new: true,
+  })
+    .then((product) => {
+      if (product) {
+        res.status(200).send({
+          message: "Product updated successfully",
+          updatedProduct: product
+        })
+      } else {
+        res.status(404).send({ message: "Product not found" })
+      }
+    })
+    .catch((error) => errorHandler(error, req, res))
+};
+
+
+module.exports.archiveProduct = (req, res) => {
+
+    let updateActiveField = {
+        isActive: false
+    };
+
+    Product.findByIdAndUpdate(req.params.id, updateActiveField)
+    .then(product => {
+        if (product) {
+            if (!product.isActive) {
+                return res.status(200).send({ 
+                    message: 'Product already archived',
+                    product: product
+                });
+            }
+            return res.status(200).send({ 
+                message: 'Product archived successfully',
+                archiveProduct: product
+            });
+        } else {
+            return res.status(404).send({ message: 'Product not found' });
+        }
+    })
+    .catch(error => errorHandler(error, req, res));
+};
+
+
+
+
+module.exports.activateProduct = (req, res) => {
+
+    let updateActiveField = {
+        isActive: true
+    }
+
+    Product.findByIdAndUpdate(req.params.id, updateActiveField)
+    .then(product => {
+        if (product) {
+            if (product.isActive) {
+                return res.status(200).send({ 
+                    message: 'Product already activated', 
+                    product: product
+                });
+            }
+            return res.status(200).send({
+                message: 'Product activated successfully',
+                activateProduct: product
+            });
+        } else {
+            return res.status(404).send({ message: 'Product not found' });
+        }
+    })
+    .catch(error => errorHandler(error, req, res));
+};
+
+
