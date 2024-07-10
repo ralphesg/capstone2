@@ -6,8 +6,9 @@ const cors = require("cors");
 // [ROUTES]
 
 const userRoutes = require("./routes/user.js");
-const cartRoutes = require("./routes/cart.js");
-const productRoutes = require("./routes/product.js");
+// const cartRoutes = require("./routes/cart.js");
+// const productRoutes = require("./routes/product.js");
+// const orderRoutes = require("./routes/order.js");
 
 // [Environment Setup] 
 
@@ -34,8 +35,9 @@ mongoose.connection.once('open', () => console.log("Now connected to MongoDB Atl
 // [Backend Routes]
 
 app.use("/users", userRoutes);
-app.use("/cart", cartRoutes);
-app.use("/product", productRoutes);
+// app.use("/cart", cartRoutes);
+// app.use("/product", productRoutes);
+// app.use("/order", orderRoutes);
 
 // [Server Gateway Response]
 
