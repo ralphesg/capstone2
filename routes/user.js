@@ -12,5 +12,11 @@ router.patch('/:id/set-as-admin', verify, verifyAdmin, userController.updateUser
 
 router.get("/details", verify, userController.getProfile);
 
+router.post("/check-email", userController.checkEmailExists);
+
+router.post("/register", userController.registerUser);
+
+router.post("/login", userController.loginUser);
+
 // [SECTION] Export Route System
 module.exports = router;
