@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const userRoutes = require("./routes/user.js");
 // const cartRoutes = require("./routes/cart.js");
-// const productRoutes = require("./routes/product.js");
+const productRoutes = require("./routes/product.js");
 // const orderRoutes = require("./routes/order.js");
 
 
@@ -37,7 +37,7 @@ mongoose.connection.once('open', () => console.log("Now connected to MongoDB Atl
 
 app.use("/users", userRoutes);
 // app.use("/cart", cartRoutes);
-// app.use("/product", productRoutes);
+app.use("/product", productRoutes);
 
 // app.use("/order", orderRoutes);
 
