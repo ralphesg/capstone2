@@ -47,7 +47,6 @@ module.exports.getAllProduct = (req, res) => {
             return res.status(200).send({products: result});
         }
         else{
-            // aside from status code 404 for not found courses, respond with a message indicating no courses were found.
             return res.status(404).send({message: 'No product found'});
         }
     })
@@ -62,7 +61,7 @@ module.exports.getAllActive = (req, res) => {
         // If the result is not null
         if(result.length > 0){
             // send the result as a response
-            return res.status(200).send(result);
+            return res.status(200).send({products: result});
         // else, there are no results found
         } else {
             // send a false boolean value
@@ -75,7 +74,7 @@ module.exports.getAllActive = (req, res) => {
 module.exports.getProduct = (req, res) => {
 
     Product.findById(req.params.id)
-    .then(course => res.send(course))
+    .then(result => res.send({product: result}))
     .catch(err => errorHandler(err, req, res));
 };
 
