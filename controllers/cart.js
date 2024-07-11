@@ -4,7 +4,9 @@ const Product = require("../models/Product.js");
 const Cart = require("../models/Cart.js");
 
 module.exports.addToCart = async (req, res) => {
-  const { userId, productId, quantity } = req.body;
+  const { productId, quantity } = req.body;
+
+  const userId = req.user.id;
 
   try {
     const product = await Product.findById(productId);
@@ -63,4 +65,45 @@ module.exports.getUsersCart = (req, res) => {
       });
     })
     .catch(error => errorHandler(error, req, res));
+};
+
+
+module.exports.updateCartItemQuantity = async (req, res) => {
+  const { productId, quantity } = req.body;
+  const userId = req.user.id;
+
+
+  try {
+    // Find the user's cart
+    let cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    // Find the cart item
+    let cartItem = cart.cartItems.find(item => item.productId.toString() === productId);
+
+    if (!cartItem) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+
+    // Update the quantity and subtotal
+    cartItem.quantity = quantity;
+    cartItem.subtotal = cartItem.quantity * cartItem.subtotal / (cartItem.quantity === quantity ? cartItem.quantity : cartItem.quantity - quantity);
+
+    // Update the total price of the cart
+    cart.totalPrice = cart.cartItems.reduce((total, item) => total + item.subtotal, 0);
+
+    // Save the updated cart
+    const savedCart = await cart.save();
+
+   res.status(201).send({
+      message: 'Item updated cart successfully',
+      updatedCart: savedCart,
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
