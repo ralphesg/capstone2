@@ -54,18 +54,25 @@ module.exports.addToCart = async (req, res) => {
 
 
 
-module.exports.getUsersCart = (req, res) => {
-  return Cart.findOne({ cartId: req.body.id }) 
-    .then(cart => {
-      if (cart) {        
-        return res.status(200).send({ cart: cart });
-      }
-      return res.status(404).send({
-        message: 'Cart not found'
-      });
-    })
-    .catch(error => errorHandler(error, req, res));
+module.exports.getUsersCart = async (req, res) => {
+  const userId = req.user.id;
+
+  let cart = await Cart.findOne({ userId });
+
+  try {
+   if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+   res.status(201).send({
+      cart: cart,
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
+
 
 
 module.exports.updateCartItemQuantity = async (req, res) => {
