@@ -10,4 +10,6 @@ router.post('/add-to-cart', verify, cartController.addToCart);
 
 router.get('/get-cart', verify, cartController.getUsersCart);
 
+router.patch('/update-cart-quantity', verify, cartController.updateCartItemQuantity);
+
 module.exports = router;
