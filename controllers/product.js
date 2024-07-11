@@ -131,8 +131,6 @@ module.exports.archiveProduct = (req, res) => {
 };
 
 
-
-
 module.exports.activateProduct = (req, res) => {
 
     let updateActiveField = {
@@ -160,3 +158,53 @@ module.exports.activateProduct = (req, res) => {
 };
 
 
+module.exports.searchProductByPrice = async (req, res) => {
+  try {
+    const { minPrice, maxPrice } = req.body;
+
+    // Validate the price range
+    if (minPrice === undefined || maxPrice === undefined) {
+      return res.status(400).json({ message: 'Please provide both minPrice and maxPrice' });
+    }
+
+    if (minPrice > maxPrice) {
+      return res.status(400).json({ message: 'minPrice cannot be greater than maxPrice' });
+    }
+
+    // Query the database for courses within the price range
+    const products = await Product.find({
+      price: { $gte: minPrice, $lte: maxPrice }
+    });
+
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to search for products' });
+  }
+};
+
+
+module.exports.searchProductByName = async (req, res) => {
+  try {
+    const { name } = req.body;
+
+    // Validate the name
+    if (!name) {
+      return res.status(400).json({ message: 'Please provide a product name to search' });
+    }
+
+    // Query the database for products with a name matching the given name
+    const products = await Product.find({
+      name: { $regex: new RegExp(name, 'i') } // 'i' makes it case-insensitive
+    });
+
+    if (products.length === 0) {
+      return res.status(404).json({ message: 'No products found with the specified name' });
+    }
+
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to search for products' });
+  }
+};
