@@ -50,17 +50,17 @@ module.exports.addToCart = async (req, res) => {
   }
 };
 
+
+
 module.exports.getUsersCart = (req, res) => {
-  return Cart.find({cartId: req.body.id})
-  .then(cart => {
-    if (cart.length > 0) {
-      console.log(cart);
-      return res.status(200).send({cart: cart});
-    }
-    console.log(cart);
-    return res.status(404).send({
-      message: 'Cart not found'
-    });
-  })
-  .catch(error => errorHandler(error, req, res));
+  return Cart.findOne({ cartId: req.body.id }) 
+    .then(cart => {
+      if (cart) {        
+        return res.status(200).send({ cart: cart });
+      }
+      return res.status(404).send({
+        message: 'Cart not found'
+      });
+    })
+    .catch(error => errorHandler(error, req, res));
 };
