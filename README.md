@@ -1,49 +1,61 @@
 # Capstone 2 Project
 
-## Team Details
+## Team and Contributions
 
-### Team Members
-- **Aya Gallarte**
-- **Ralph Christian Esguerra**
+### Aya Gallarte
+**Features:**
 
-### Features by Aya Gallarte
 #### User Resources:
-- User registration
-- User authentication
-- **Routes:** `routes/user.js`
-- **Controllers:** `controllers/user.js`
-- **Models:** `models/User.js`
+- **User registration**
+- **User authentication**
+  - `routes/user.js`
+  - `controllers/user.js`
+  - `models/User.js`
 
 #### Product Resources:
-- **Routes:** `routes/product.js`
-- **Controllers:** `controllers/product.js`
-- Update Product Info
-- Archive Product
-- Activate Product
+- **Update Product Info**
+- **Archive Product**
+- **Activate Product**
+  - `routes/product.js`
+  - `controllers/product.js`
 
-### Features by Ralph Christian Esguerra
+#### Cart Resources:
+- **Get User's Cart**
+  - `routes/cart.js`
+  - `controllers/cart.js`
+
+### Ralph Christian Esguerra
+**Features:**
+
 #### User Resources:
-- Set user as admin (Admin only)
-- Retrieve User Details
-- Update Password
-- **Routes:** `routes/user.js`
-- **Controllers:** `controllers/user.js`
-- **Index:** `index.js`
+- **Set user as admin (Admin only)**
+- **Retrieve User Details**
+- **Update Password**
+  - `routes/user.js`
+  - `controllers/user.js`
+  - `index.js`
 
 #### Product Resources:
-- **Models:** `models/Product.js`
-- **Routes:** `routes/product.js`
-- **Controllers:** `controllers/product.js`
-- Create Product
-- Retrieve all products
-- Retrieve all active products
-- Retrieve single product
+- **Create Product**
+- **Retrieve all products**
+- **Retrieve all active products**
+- **Retrieve single product**
+  - `models/Product.js`
+  - `routes/product.js`
+  - `controllers/product.js`
+
+#### Cart Resources:
+- **Add to Cart**
+- **Subtotal for each item**
+  - `routes/cart.js`
+  - `models/Cart.js`
+  - `controllers/cart.js`
 
 ## User Credentials
 
 ### Regular User
-- **Email:** steve@mail.com
-- **Password:** 12345678
+- **Email:** test@mail.com
+- **Password:** newPass1234
 
 ### Admin User
 - **Email:** admin@mail.com
