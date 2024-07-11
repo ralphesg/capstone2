@@ -5,8 +5,6 @@ const User = require("../models/User.js");
 // Importing auth.js
 const auth = require("../auth.js");
 const { errorHandler } = auth;
-const mongoose = require('mongoose');
-
 
 module.exports.getProfile = (req, res) => {
 	
