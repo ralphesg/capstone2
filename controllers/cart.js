@@ -83,6 +83,7 @@ module.exports.updateCartItemQuantity = async (req, res) => {
   try {
     // Find the user's cart
     let cart = await Cart.findOne({ userId });
+    const product = await Product.findById(productId);
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
@@ -97,7 +98,7 @@ module.exports.updateCartItemQuantity = async (req, res) => {
 
     // Update the quantity and subtotal
     cartItem.quantity = quantity;
-    cartItem.subtotal = cartItem.quantity * cartItem.subtotal / (cartItem.quantity === quantity ? cartItem.quantity : cartItem.quantity - quantity);
+    cartItem.subtotal = product.price * cartItem.quantity
 
     // Update the total price of the cart
     cart.totalPrice = cart.cartItems.reduce((total, item) => total + item.subtotal, 0);
