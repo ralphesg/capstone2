@@ -8,4 +8,8 @@ const router = express.Router();
 
 router.post('/checkout', verify, orderController.userCheckout);
 
+router.get("/my-orders", verify, orderController.getMyOrders);
+
+router.get("/all-orders", verify, verifyAdmin, orderController.getAllOrders); 
+
 module.exports = router;
