@@ -173,7 +173,7 @@ module.exports.clearCart = async (req, res) => {
     // Clear cartItems array
     cart.cartItems = [];
 
-    // Update totalPrice to 0 (or any default value for an empty cart)
+    // Update totalPrice to 0 
     cart.totalPrice = 0;
 
     // Save the updated cart
