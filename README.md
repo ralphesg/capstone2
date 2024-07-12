@@ -27,7 +27,8 @@
   - `controllers/cart.js`
 
 #### Order Resources:
-- **Retrieve logged in users order**
+- **Retrieve logged in users orders**
+- **Retrieve all users orders**
   - `routes/order.js`
   - `controllers/order.js`
 

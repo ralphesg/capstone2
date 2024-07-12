@@ -11,8 +11,6 @@ module.exports.userCheckout = async (req, res) => {
 
     let cart = await Cart.findOne({userId});
 
-    console.log(cart)
-
     if (!cart) {
       return res.status(404).send({ error: 'No Items to Checkout' });
     }
@@ -66,17 +64,12 @@ module.exports.getAllOrders = (req, res) => {
 
     return Order.find({})
     .then(orders => {
-      console.log("HEY 1" + orders);
-        // if the result is not null send status 200 and its result
         if(orders.length > 0){
             return res.status(200).send({orders: orders});
         }
         else{
-            // aside from status code 404 for not found courses, respond with a message indicating no courses were found.
-                console.log("HEY 2" + orders);
             return res.status(404).send({error: 'No orders found'});
         }
-              console.log("HEY 3" + orders);
     })
     .catch(error => errorHandler(error, req, res));
 };
