@@ -26,6 +26,11 @@
   - `routes/cart.js`
   - `controllers/cart.js`
 
+#### Order Resources:
+- **Retrieve logged in users order**
+  - `routes/order.js`
+  - `controllers/order.js`
+
 ### Ralph Christian Esguerra
 
 #### User Resources:
@@ -54,6 +59,15 @@
   - `routes/cart.js`
   - `models/Cart.js`
   - `controllers/cart.js`
+
+
+#### Order Resources:
+- **Create Order**
+  - `models/Order.js`
+  - `routes/order.js`
+  - `controllers/order.js`
+  - `index.js`
+
 
 ## User Credentials
 
