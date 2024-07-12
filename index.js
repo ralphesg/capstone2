@@ -35,10 +35,10 @@ mongoose.connection.once('open', () => console.log("Now connected to MongoDB Atl
 
 // [Backend Routes]
 
-app.use("/b7/users", userRoutes);
-app.use("/b7/cart", cartRoutes);
-app.use("/b7/products", productRoutes);
-app.use("/b7/orders", orderRoutes);
+app.use("/b2/users", userRoutes);
+app.use("/b2/cart", cartRoutes);
+app.use("/b2/products", productRoutes);
+app.use("/b2/orders", orderRoutes);
 
 // [Server Gateway Response]
 

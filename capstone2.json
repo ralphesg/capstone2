@@ -2,9 +2,9 @@
 	"url": "",
 	"routesPrefix": {
 
-		"users": "/b7/users",
-		"products": "/b7/products",
-		"orders": "/b7/orders",
-		"cart": "/b7/cart"
+		"users": "/b2/users",
+		"products": "/b2/products",
+		"orders": "/b2/orders",
+		"cart": "/b2/cart"
 	}
 }
