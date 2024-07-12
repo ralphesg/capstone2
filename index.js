@@ -35,16 +35,16 @@ mongoose.connection.once('open', () => console.log("Now connected to MongoDB Atl
 
 // [Backend Routes]
 
-app.use("/users", userRoutes);
-app.use("/cart", cartRoutes);
-app.use("/product", productRoutes);
-app.use("/order", orderRoutes);
+app.use("/b7/users", userRoutes);
+app.use("/b7/cart", cartRoutes);
+app.use("/b7/products", productRoutes);
+app.use("/b7/orders", orderRoutes);
 
 // [Server Gateway Response]
 
 
 if(require.main === module) {
-	app.listen(process.env.PORT || 4000, () => console.log(`API is now available in port ${process.env.PORT || 4000}`));
+	app.listen(process.env.PORT || port, () => console.log(`API is now available in port ${process.env.PORT || port}`));
 }
 
 module.exports = { app, mongoose };
