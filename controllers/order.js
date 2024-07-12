@@ -14,7 +14,7 @@ module.exports.userCheckout = async (req, res) => {
     console.log(cart)
 
     if (!cart) {
-      return res.status(404).send({ error: 'No items to Checkout' });
+      return res.status(404).send({ error: 'No Items to Checkout' });
     }
 
     if (cart.cartItems.length === 0) {
@@ -40,7 +40,7 @@ module.exports.userCheckout = async (req, res) => {
 
    
     res.status(201).send({
-      orders: savedOrder
+      message: 'Ordered Successfully'
     });
   } catch (error) {
     res.status(500).send({ error: 'Failed to Checkout', error });
