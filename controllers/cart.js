@@ -48,6 +48,7 @@ module.exports.addToCart = async (req, res) => {
       cart: savedCart,
     });
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: 'Error adding item to cart', error });
   }
 };

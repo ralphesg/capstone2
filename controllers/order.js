@@ -31,10 +31,9 @@ module.exports.userCheckout = async (req, res) => {
     
     const savedOrder = await newOrder.save();
 
-    // Clear Cart
-    // cart.cartItems = [];
-    // cart.totalPrice = 0;
-    // await cart.save();
+    cart.cartItems = [];
+    cart.totalPrice = 0;
+    await cart.save();
 
    
     res.status(201).send({

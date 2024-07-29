@@ -12,6 +12,8 @@ router.patch('/:id/set-as-admin', verify, verifyAdmin, userController.updateUser
 
 router.get("/details", verify, userController.getProfile);
 
+router.get("/details-specific/:id", verify, userController.getSpecificProfile);
+
 router.post("/check-email", userController.checkEmailExists);
 
 router.post("/register", userController.registerUser);

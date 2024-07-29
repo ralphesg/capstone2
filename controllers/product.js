@@ -31,7 +31,7 @@ module.exports.createProduct = async (req, res) => {
 
   try {
     const savedProduct = await newProduct.save();
-    res.status(201).send({product: savedProduct});
+    res.status(201).send({ success: true, message: 'Success creating product' });
   } catch (error) {
     res.status(500).send({ message: 'Error creating product', error });
   }
@@ -73,21 +73,21 @@ module.exports.getAllActive = (req, res) => {
 
 module.exports.getProduct = (req, res) => {
 
-    Product.findById(req.params.id)
+    Product.findById(req.params.productid)
     .then(result => res.send({product: result}))
     .catch(err => errorHandler(err, req, res));
 };
 
 
 module.exports.updateProduct = (req, res) => {
-    console.log(req.params.id);
+    console.log(req.params.productid);
     let productUpdate = {
         name: req.body.name,
         description: req.body.description,
         price: req.body.price
     }
 
-    return Product.findByIdAndUpdate(req.params.id, productUpdate, {
+    return Product.findByIdAndUpdate(req.params.productid, productUpdate, {
     new: true,
   })
     .then((product) => {
@@ -110,7 +110,7 @@ module.exports.archiveProduct = (req, res) => {
         isActive: false
     };
 
-    Product.findByIdAndUpdate(req.params.id, updateActiveField)
+    Product.findByIdAndUpdate(req.params.productid, updateActiveField)
     .then(product => {
         if (product) {
             if (!product.isActive) {
@@ -137,7 +137,7 @@ module.exports.activateProduct = (req, res) => {
         isActive: true
     }
 
-    Product.findByIdAndUpdate(req.params.id, updateActiveField)
+    Product.findByIdAndUpdate(req.params.productid, updateActiveField)
     .then(product => {
         if (product) {
             if (product.isActive) {

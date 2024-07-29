@@ -21,6 +21,23 @@ module.exports.getProfile = (req, res) => {
 	.catch(error => errorHandler(error, req, res));
 };
 
+module.exports.getSpecificProfile = (req, res) => {
+
+	const userId = req.params.id;
+	
+	return User.findById(userId)
+	.then(user => {
+
+		if(!user){
+			return res.status(403).send({ message: 'invalid signature' })
+		}else {
+			user.password = "";
+			return res.status(200).send({user: user});
+		}  
+	})
+	.catch(error => errorHandler(error, req, res));
+};
+
 module.exports.updateUserToAdmin = (req, res) => {
     const userId = req.params.id;
 
